@@ -1,5 +1,6 @@
 const {City} = require("../models/index");
 const { Op } = require('sequelize');
+const {Airport} = require('../models/index');
 
 class CityRepository{
     async createCity(name){
@@ -79,6 +80,26 @@ class CityRepository{
         try {
             const cities = await City.bulkCreate(data);
             return cities;
+        } catch (error) {
+            console.log("Something went wrong in repository layer!");
+            throw {error};
+        }
+    }
+
+    async getCityAirports(data){
+        try {
+            // const city = await City.findOne({
+            //     where : {
+            //         id :data
+            //     }
+            // });
+            const city = await City.findByPk(data);
+             const airports = await city.getAirports();
+            const res = []
+            for(let i in airports){
+                res.push(airports[i].name);
+            }
+            return res;
         } catch (error) {
             console.log("Something went wrong in repository layer!");
             throw {error};
