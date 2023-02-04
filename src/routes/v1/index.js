@@ -8,5 +8,6 @@ router.get('/city/:id',cityController.get);
 router.delete('/city/:id',cityController.destroy);
 router.patch('/city/:id',cityController.update);
 router.get('/city',cityController.getAll);
+router.post('/cities',cityController.createAll);
 
 module.exports = router;

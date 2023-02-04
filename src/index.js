@@ -20,6 +20,7 @@ const setupAndStartServer = async () =>{
 
        const airports = await Airport.findAll();
     //    console.log(airports);
+    // console.log(db);
         if(process.env.SYNC_DB=='true'){
             // console.log("into sybc db");
             db.sequelize.sync({alter:true});

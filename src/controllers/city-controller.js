@@ -4,6 +4,7 @@ const cityService = new CityService();
 
 const create = async (req,res) =>{
     try {
+        console.log('console from controller:',req.body);
          const city = await cityService.createCity(req.body);
         console.log(req.body);
         return res.status(201).json({
@@ -113,10 +114,31 @@ const getAll = async (req, res) =>{
     }
 }
 
+const createAll = async (req , res) =>{
+    try {
+        const cities = await cityService.createAllCities(req.body);
+        return res.status(200).json({
+            data : cities,
+            success : true,
+            message : "sucessfully created all cities",
+            err: {}
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data : {},
+            success : false,
+            message : "Not able to create the cities",
+            err : error
+        })
+    }
+}
+
 module.exports = {
     create,
     destroy,
     update,
     get,
-    getAll
+    getAll,
+    createAll
 }

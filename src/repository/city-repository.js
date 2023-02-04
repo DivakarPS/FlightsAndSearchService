@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 class CityRepository{
     async createCity(name){
         try{
+            console.log('console from repo:',name);
              const city = await City.create(name);
             return city;
         }catch(error){
@@ -67,6 +68,16 @@ class CityRepository{
                 return cities;
             }
             const cities = await City.findAll();
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in repository layer!");
+            throw {error};
+        }
+    }
+
+    async createCities(data){
+        try {
+            const cities = await City.bulkCreate(data);
             return cities;
         } catch (error) {
             console.log("Something went wrong in repository layer!");
