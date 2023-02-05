@@ -12,9 +12,27 @@ class AirportRepository {
             throw{error};
         }
     }
-    async deleteAirport(data){
+    async deleteAirport(airportId){
         try {
-            const airport = await Airport.destroy(data);
+            const response = await Airport.destroy({
+                where : {
+                    id : airportId
+                }
+            });
+            return response;
+        } catch (error) {
+            console.log("Something went wrong in repository layer of Airport");
+            throw{error};
+        }
+    }
+    
+    async updateAirport(airportId,data){
+        try {
+            const airport = await Airport.findByPk(airportId);
+            airport.name=data.name;
+            airport.address=data.address;
+            airport.cityId = data.cityId;
+            await airport.save();
             return airport;
         } catch (error) {
             console.log("Something went wrong in repository layer of Airport");
@@ -22,4 +40,33 @@ class AirportRepository {
         }
     }
 
+    async getAirport(airportId){
+        try {
+            const airport = await Airport.findByPk(airportId);
+            console.log(airport);
+            return airport;
+        } catch (error) {
+            console.log("Something went wrong in repository layer of Airport");
+            throw{error};
+        }
+    }
+    
+    async getCityAirports(city_Id){
+        try {
+            const airports = await Airport.find({
+                where: {
+                    cityId : city_Id
+                },
+                attributes : ['name']
+            })
+            console.log(airports);
+            return airports;
+        } catch (error) {
+            console.log("Something went wrong in repository layer of Airport");
+            throw{error};
+        }
+    }
+
 }
+
+module.exports = AirportRepository;

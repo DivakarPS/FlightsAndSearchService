@@ -4,7 +4,6 @@ const cityService = new CityService();
 
 const create = async (req,res) =>{
     try {
-        console.log('console from controller:',req.body);
          const city = await cityService.createCity(req.body);
         console.log(req.body);
         return res.status(201).json({
