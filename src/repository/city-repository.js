@@ -5,7 +5,6 @@ const {Airport} = require('../models/index');
 class CityRepository{
     async createCity(name){
         try{
-            console.log('console from repo:',name);
              const city = await City.create(name);
             return city;
         }catch(error){
