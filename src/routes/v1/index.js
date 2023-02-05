@@ -18,4 +18,14 @@ router.delete('/airport/:id',airportController.destroy);
 router.patch('/airport/:id',airportController.update);
 
 
+
+/*
+ remember that the airplanes were added only through seeder files and add
+ APIs for airplane crud here!
+*/
+
+
+
+
+
 module.exports = router;
