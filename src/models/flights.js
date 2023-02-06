@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       unique:true
     },
     airplaneId: {
-      tye:DataTypes.INTEGER,
+      type:DataTypes.INTEGER,
       allowNull:false
     },
     departureAirportId: {

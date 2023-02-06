@@ -1,30 +1,31 @@
 const express = require('express');
-const cityController = require('../../controllers/city-controller');
-const airportController = require('../../controllers/airport-controller');
+const {CityController,AirportController,FlightController} = require('../../controllers/index');
+
 const router = express.Router();
 
-router.post('/city',cityController.create);
-router.get('/city/:id',cityController.get);
-router.delete('/city/:id',cityController.destroy);
-router.patch('/city/:id',cityController.update);
-router.get('/city',cityController.getAll);
-router.post('/cities',cityController.createAll);
-router.get('/city-airports/:id',cityController.getCityAirports);
+router.post('/city',CityController.create);
+router.get('/city/:id',CityController.get);
+router.delete('/city/:id',CityController.destroy);
+router.patch('/city/:id',CityController.update);
+router.get('/city',CityController.getAll);
+router.post('/cities',CityController.createAll);
+router.get('/city-airports/:id',CityController.getCityAirports);
 
 
-router.post('/airport',airportController.create);
-router.get('/airport/:id',airportController.get);
-router.delete('/airport/:id',airportController.destroy);
-router.patch('/airport/:id',airportController.update);
+router.post('/airport',AirportController.create);
+router.get('/airport/:id',AirportController.get);
+router.delete('/airport/:id',AirportController.destroy);
+router.patch('/airport/:id',AirportController.update);
 
 
 
 /*
  remember that the airplanes were added only through seeder files and add
  APIs for airplane crud here!
+ So write repo - services - controllers - apis for airplanes
 */
 
-
+router.post('/flights',FlightController.create);
 
 
 
