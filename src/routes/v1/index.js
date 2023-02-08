@@ -1,5 +1,6 @@
 const express = require('express');
 const {CityController,AirportController,FlightController} = require('../../controllers/index');
+const { FlightMiddlewares } = require('../../middlewares/index');
 
 const router = express.Router();
 
@@ -25,7 +26,12 @@ router.patch('/airport/:id',AirportController.update);
  So write repo - services - controllers - apis for airplanes
 */
 
-router.post('/flights',FlightController.create);
+router.post(
+    '/flights',
+    FlightMiddlewares.validateCreateFlight,
+    FlightController.create
+);
+
 router.get('/flights/',FlightController.getAll);
 
 
