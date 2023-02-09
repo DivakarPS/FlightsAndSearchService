@@ -3,11 +3,11 @@ const {AirportRepository} = require('../repository/index');
 // const airportRepository = new AirportRepository();
 class AirportService {
     constructor(){
-        this.AirportService = new AirportRepository();
+        this.airportRepository = new AirportRepository();
     }
     async createAirport(data){
         try {
-            const airports = await this.AirportService.createAirport(data);
+            const airports = await this.airportRepository.createAirport(data);
         } catch (error) {
             console.log("Error in service layer of Airport");
             throw {error};
@@ -16,7 +16,7 @@ class AirportService {
 
     async deleteAirport(airportId){
         try {
-            const airport = await this.AirportService.deleteAirport(airportId);
+            const airport = await this.airportRepository.deleteAirport(airportId);
             return airport;
         } catch (error) {
             console.log("Error in service layer of Airport");
@@ -26,7 +26,7 @@ class AirportService {
 
     async updateAirport(airportId,data){
         try {
-            const airport = await this.AirportService.updateAirport(airportId,data);
+            const airport = await this.airportRepository.updateAirport(airportId,data);
             return airport
         } catch (error) {
             console.log("Error in service layer of Airport");
@@ -36,7 +36,7 @@ class AirportService {
 
     async getAirport(airportId){
         try {
-            const airport = await this.AirportService.getAirport(airportId);
+            const airport = await this.airportRepository.getAirport(airportId);
             return airport;
         } catch (error) {
             console.log("Error in service layer of Airport");
@@ -46,7 +46,8 @@ class AirportService {
     
     async getCityAirports(cityId){
         try {
-            const airport =  await this.AirportService.getCityAirports(cityId);
+            const airport =  await this.airportRepository.getCityAirports(cityId);
+            // console.log("from service",airport);
             return airport;
         } catch (error) {
             console.log("Error in service layer of Airport");

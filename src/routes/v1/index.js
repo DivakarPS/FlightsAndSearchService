@@ -1,5 +1,5 @@
 const express = require('express');
-const {CityController,AirportController,FlightController} = require('../../controllers/index');
+const {CityController,AirportController,FlightController,AirplaneController} = require('../../controllers/index');
 const { FlightMiddlewares } = require('../../middlewares/index');
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.post('/airport',AirportController.create);
 router.get('/airport/:id',AirportController.get);
 router.delete('/airport/:id',AirportController.destroy);
 router.patch('/airport/:id',AirportController.update);
-
+router.get('/airport-cities/:id',AirportController.getCityAirports);
 
 
 /*
@@ -25,15 +25,23 @@ router.patch('/airport/:id',AirportController.update);
  APIs for airplane crud here!
  So write repo - services - controllers - apis for airplanes
 */
+router.post('/airplane', AirplaneController.create);
+router.get('/airplane/:id', AirplaneController.get);
+router.post('/airplane/:id', AirplaneController.destroy);
+router.patch('/airplane/:id', AirplaneController.update)
+
+
+
 
 router.post(
-    '/flights',
+    '/flight',
     FlightMiddlewares.validateCreateFlight,
     FlightController.create
 );
-
-router.get('/flights/',FlightController.getAll);
-
+router.get('/flight/',FlightController.getAll);
+router.post('/flight/:id', FlightController.destroy);
+router.patch('/flight/:id',FlightController.update);
+router.get('/flight/:id', FlightController.get);
 
 
 module.exports = router;

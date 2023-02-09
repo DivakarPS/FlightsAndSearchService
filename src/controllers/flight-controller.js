@@ -43,7 +43,70 @@ const getAll = async (req , res) =>{
     }
 }
 
+const destroy = async (req, res) => {
+    try {
+        const response = await flightService.deleteFlight(req.params.id);
+        return res.status(201).json({
+            data : response,
+            success : true,
+            message : "Successfully deleted the flight",
+            err : {}
+        });
+    } catch (error) {
+        console.log("somthing went wrong in controller of Flights");
+        res.status(500).json({
+            data : {},
+            success : false,
+            message : 'Not able to delete Flight',
+            err : {error}
+        })
+    }
+}
+
+const update = async (req, res) => {
+    try {
+        const response = await flightService.updateFight(req.params.id,req.body);
+        return res.status(201).json({
+            data : response,
+            success : true,
+            message : "Successfully updated the flight",
+            err : {}
+        });
+    } catch (error) {
+        console.log("somthing went wrong in controller of Flights");
+        res.status(500).json({
+            data : {},
+            success : false,
+            message : 'Not able to update the Flight',
+            err : {error}
+        })
+    }
+}
+
+const get = async (req, res) => {
+    try {
+        const flight = await flightService.getFlight(req.params.id);
+        return res.status(201).json({
+            data : flight,
+            success : true,
+            message : "Successfully updated the flight",
+            err : {}
+        });
+    } catch (error) {
+        console.log("somthing went wrong in controller of Flights");
+        res.status(500).json({
+            data : {},
+            success : false,
+            message : 'Not able to u get the Flight',
+            err : {error}
+        })
+    }
+}
+
 module.exports ={
     create,
-    getAll
+    getAll,
+    destroy,
+    update,
+    get
 }

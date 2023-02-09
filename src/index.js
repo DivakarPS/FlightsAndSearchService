@@ -2,7 +2,6 @@ const express = require('express');
 const {PORT} = require('./config/serverConfig');
 const bodyParser = require('body-parser');
 const ApiRoutes = require('./routes/index');
-const {FlightMiddlewares} = require('./middlewares/index');
 
 const {City , Airport } = require('./models/index');
 const db = require('./models/index');

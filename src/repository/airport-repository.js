@@ -53,13 +53,13 @@ class AirportRepository {
     
     async getCityAirports(city_Id){
         try {
-            const airports = await Airport.find({
+            const airports = await Airport.findAll({
                 where: {
                     cityId : city_Id
                 },
                 attributes : ['name']
             })
-            console.log(airports);
+            // console.log("from repo",airports);
             return airports;
         } catch (error) {
             console.log("Something went wrong in repository layer of Airport");

@@ -58,6 +58,34 @@ class FlightRepository{
             throw{error};
         }
     }
+
+    async deleteFlight(flightId){
+        try {
+            await Flights.destroy({
+                where : {
+                    id: flightId
+                }
+            });
+            return true;
+        } catch (error) {
+            console.log("something went wrong in repository layer of Flights");
+            throw{error};
+        }
+    }
+
+    async updateFlight(flightId, data){
+        try {
+            const flights = await Flights.update(data,{
+                where: {
+                    id: flightId
+                }
+            });
+            return flights;
+        } catch (error) {
+            console.log("something went wrong in repository layer of Flights");
+            throw{error};
+        }
+    }
 }
 
 module.exports = FlightRepository;
