@@ -89,7 +89,7 @@ const get = async (req, res) => {
         return res.status(201).json({
             data : flight,
             success : true,
-            message : "Successfully updated the flight",
+            message : "Successfully fetched the flight",
             err : {}
         });
     } catch (error) {
@@ -102,6 +102,8 @@ const get = async (req, res) => {
         })
     }
 }
+
+
 
 module.exports ={
     create,

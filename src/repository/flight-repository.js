@@ -80,7 +80,7 @@ class FlightRepository{
                     id: flightId
                 }
             });
-            return flights;
+            return true;
         } catch (error) {
             console.log("something went wrong in repository layer of Flights");
             throw{error};
